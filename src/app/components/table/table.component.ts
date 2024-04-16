@@ -10,6 +10,8 @@ import { TableItem } from 'src/app/models/table-item.model';
 export class TableComponent implements OnInit {
   tableData: TableItem[] = [];
   idTableData: TableItem[] = [];
+  showAllApiDataTable = false;
+  showAddIdTableData = false;
 
   constructor(private tableDataService: TableDataService) {}
 
@@ -21,6 +23,8 @@ export class TableComponent implements OnInit {
       (data: TableItem[]) => {
         console.log('Data:', data);
         this.tableData = data;
+        this.showAddIdTableData = false;
+        this.showAllApiDataTable = true;
       },
       (error) => {
         console.error('Error:', error);
@@ -32,6 +36,8 @@ export class TableComponent implements OnInit {
       (data: TableItem[]) => {
         console.log('Data for ID', id, ':', data);
         this.idTableData = [...this.idTableData, ...data]; // Append the fetched data to the existing idTableData array
+        this.showAllApiDataTable = false;
+        this.showAddIdTableData = true;
       },
       (error) => {
         console.error('Error fetching data for ID', id, ':', error);
