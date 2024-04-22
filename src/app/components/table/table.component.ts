@@ -17,6 +17,12 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialize data here if needed
+        this.tableDataService.clearTableEvent.subscribe(() => {
+      this.clearTable();
+    });
+  }
+  clearTable(): void {
+    this.idTableData = []; // Clear the idTableData array by assigning an empty array
   }
   fetchAllData(): void {
     this.tableDataService.getAllData().subscribe(
@@ -43,9 +49,5 @@ export class TableComponent implements OnInit {
         console.error('Error fetching data for ID', id, ':', error);
       }
     );
-  }
-
-  clearTable(): void {
-    this.idTableData = []; // Clear the idTableData array by assigning an empty array
   }
 }
